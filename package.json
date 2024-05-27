@@ -4,10 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node ./dist/index.js"
+    "build": "rimraf dist && npx tsc",
+    "prestart": "yarn build",
+    "start": "node dist/index.js",
+    "preserve": "yarn build",
+    "serve": "concurrently \"tsc -w\" \"nodemon dist/index.js\""
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.1",
+    "rimraf": "^5.0.7",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.12"
   }
 }
